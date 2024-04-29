@@ -1,0 +1,69 @@
+{% extends "books/base.html" %} {% block title %}Lista de lectura{% endblock %}
+{% block content %} {% if books %}
+<h1 class="text-xl">Lista de lectura 📚</h1>
+<a href="new/" class="w-max h-max p-1 bg-sky-700 rounded-lg mb-5 transition ease-in-out hover:scale-125">Nuevo Item</a>
+<table class="table-auto text-center border-collapse border border-slate-500">
+  <thead>
+    <tr class="bg-gradient-to-r from-[#141E30] to-[#243B55]">
+      <th class="border border-slate-600">#</th>
+      <th class="border border-slate-600">Nombre</th>
+      <th class="border border-slate-600">Autor</th>
+      <th class="border border-slate-600">Año de Publicación</th>
+      <th class="border border-slate-600">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+
+    <tr id="{{book.id}}" name="row" href="{{book.id}}">
+      <td
+        class="bg-gradient-to-b from-[#000000] to-[#141E30] border border-slate-600"
+        name="id"
+      >
+        <a
+          class="transition ease-in-out hover:font-bold"
+          href="{% url 'book_info' book.id %}   "
+          >{{book.id}}
+        </a>
+      </td>
+      <td
+        class="bg-gradient-to-b from-[#000000] to-[#141E30] border border-slate-600"
+        name="nombre"
+      >
+        {{book.name}}
+      </td>
+      <td
+        class="bg-gradient-to-b from-[#000000] to-[#141E30] border border-slate-600"
+        name="autor"
+      >
+        {{book.author}}
+      </td>
+      <td
+        class="bg-gradient-to-b from-[#000000] to-[#141E30] border border-slate-600"
+        name="año de publicacion"
+      >
+        {{book.release_date}}
+      </td>
+      <td
+        class="flex flex-row justify-center bg-gradient-to-b from-[#000000] to-[#141E30] border border-slate-600"
+        name="acciones"
+      >
+      <a href="/books/{{book.id}}"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0,0,256,256"
+style="fill:#000000;">
+<g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M18.4,4.4l1.2,1.2l-13.4,13.4h-1.2v-1.2l13.4,-13.4M18.4,2c-0.3,0 -0.5,0.1 -0.7,0.3l-14.7,14.7v4h4l14.7,-14.7c0.4,-0.4 0.4,-1 0,-1.4l-2.6,-2.6c-0.2,-0.2 -0.4,-0.3 -0.7,-0.3z"></path><path transform="translate(0.13311,13.82136) rotate(-45.001)" d="M15.8,4.3h2v4.9h-2z"></path></g></g>
+</svg></a>
+      <a><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0,0,256,256"
+style="fill:#000000;">
+<g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M10,2l-1,1h-5v2h16v-2h-5l-1,-1zM5,7v15h14v-15zM8,9h2v11h-2zM14,9h2v11h-2z"></path></g></g>
+</svg></a>
+
+      </td>
+
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No books are available.</p>
+{% endif %} {% endblock %}

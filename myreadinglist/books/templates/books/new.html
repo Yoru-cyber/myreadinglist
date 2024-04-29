@@ -1,0 +1,10 @@
+{% extends "books/base.html" %} {% block title %}Nuevo Item{% endblock %} 
+{% block content %}
+<form class="flex flex-col w-fit justify-center align-center self-center" action="{% url 'new_book'%}" method="post">
+  {% csrf_token %} {{form}}
+  <input type="submit" value="Agregar" />
+</form>
+{% if form.errors%}
+{{form.errors}}
+{% endif%}
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body class="bg-black w-full h-[100vh]">
+    <div
+      id="content"
+      class="bg-gradient-to-b from-[#000000] to-[#141E30] flex flex-col h-full p-3 text-white"
+    >
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
