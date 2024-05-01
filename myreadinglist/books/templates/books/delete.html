@@ -1,0 +1,16 @@
+{% extends "books/base.html" %} {% block title %}Borrar Libro {{book.id}} ✏️{% endblock %}
+{% block content %}
+<div id="book_content" class="flex-col items-center justify-center text-center">
+    <h1>Borrar libro {{book.id}}  ✏️</h1>
+    <h2 class="font-bold">{{book.name}}</h2>
+    <p>{{book.author}}</p>
+    <p>{{book.release_date}}</p>
+</div>
+<form class="flex flex-col w-fit justify-center align-center self-center"  method="post">
+  {% csrf_token %}
+  <input type="submit" value="Borrar" class="bg-red-700 text-white font-bold rounded-lg" />
+</form>
+{% if form.errors%}
+{{form.errors}}
+{% endif%}
+{% endblock %}

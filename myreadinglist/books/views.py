@@ -13,7 +13,7 @@ def index(request):
 
 def book_info(request, book_id):
     if request.method == "POST":
-        book = Book.objects.get(pk = book_id)
+        book = Book.objects.get(pk=book_id)
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
@@ -40,3 +40,15 @@ def new_book(request):
     else:
         form = BookForm()
     return render(request, "books/new.html", {"form": form})
+def book_delete(request, book_id):
+    if request.method == "POST":
+        book = Book.objects.get(pk=book_id)
+        book.delete()
+        return HttpResponseRedirect("/books")
+
+    try:
+        book = Book.objects.get(pk=book_id)
+        context = {"book": book}
+    except Book.DoesnotExist:
+        raise Http404("Requested book does not exist")
+    return render(request, "books/delete.html", context)
